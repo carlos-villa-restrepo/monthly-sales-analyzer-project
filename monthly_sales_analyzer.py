@@ -24,27 +24,71 @@ sales_data = [
 
 def total_sales_by_product(data, product_key):
     """Calculates the total sales of a specific product in 30 days."""
-    pass
-
-
+    total = 0
+    for i in range(len(data)):
+        total = total + data[i][product_key]
+    return total
+    
 def average_daily_sales(data, product_key):
     """Calculates the average daily sales of a specific product."""
-    pass
-
+    total = 0
+    for i in range(len(data)):
+        total = total + data[i][product_key]
+    
+    cantidad_dias = len(data)
+    
+    promedio = total / cantidad_dias
+    
+    return promedio
 
 def best_selling_day(data):
     """Finds the day with the highest total sales."""
-    pass
+    mejor_dia = 0
+    ventas_mas_altas = 0
+    
+    for i in range(len(data)):
+        # calcular ventas totales del día actual
+        ventas_totales = data[i]["product_a"] + data[i]["product_b"] + data[i]["product_c"]
+        
+        # comparar con el máximo encontrado hasta ahora
+        if ventas_totales > ventas_mas_altas:
+            ventas_mas_altas = ventas_totales
+            mejor_dia = data[i]["day"]
+    
+    return mejor_dia
 
 
 def days_above_threshold(data, product_key, threshold):
     """Counts how many days the sales of a product exceeded a given threshold."""
-    pass
-
+    contador = 0
+    
+    for i in range(len(data)):
+        ventas = data[i][product_key]
+        
+        if ventas > threshold:
+            contador = contador + 1
+    
+    return contador
 
 def top_product(data):
     """Determines which product had the highest total sales in 30 days."""
-    pass
+    total_a = 0
+    total_b = 0
+    total_c = 0
+    
+    # sumar ventas de cada producto
+    for i in range(len(data)):
+        total_a = total_a + data[i]["product_a"]
+        total_b = total_b + data[i]["product_b"]
+        total_c = total_c + data[i]["product_c"]
+    
+    # comparar los totales
+    if total_a > total_b and total_a > total_c:
+        return "product_a"
+    elif total_b > total_a and total_b > total_c:
+        return "product_b"
+    else:
+        return "product_c"
 
 
 
